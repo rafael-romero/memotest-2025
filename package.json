@@ -1,0 +1,22 @@
+{
+  "name": "memotest-2025",
+  "version": "1.0.0",
+  "description": "Juego Memotest para r/Argentina Programa",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafael-romero/memotest-2025.git"
+  },
+  "author": "Rafael Romero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafael-romero/memotest-2025/issues"
+  },
+  "homepage": "https://github.com/rafael-romero/memotest-2025#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.5"
+  }
+}
