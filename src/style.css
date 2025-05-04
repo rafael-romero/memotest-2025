@@ -1,0 +1,28 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+header {
+  text-align: center;
+  font-size: 24px;
+  height: 25vh;
+}
+
+main {
+  height: 75vh;
+}
+
+.tarjeta {
+  height: 130px;
+  width: 100%;
+  background-color: #f0f0f0;
+  display: inline-block;
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
