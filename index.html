@@ -12,24 +12,22 @@
 
 <body>
   <header>
-    <div class="container container-fluid mb-3">
+    <div class="container container-fluid">
 
       <div class="row justify-content-center">
         <div class="col-6 col-md-6 text-center">
-          <h1>Memotest</h1>
-          <p id="subtitulo" class="h4">Para entretener la mente!!!</p>
-          <button id="iniciar-btn" class="btn btn-primary">Iniciar Juego</button>
+
+          <img id="titulo" src="./img/Duelo-de-Memoria-Pokemon-23-5-2025.png" alt="titulo duelo de memoria pokemon">
+          <button id="iniciar-btn" class="btn btn-primary texto-pokemon-azul">Iniciar Juego</button>
         </div>
         <div id="pizarra-anotacion" class="col-6 col-md-6 text-center">
           <div class="row justify-content-center">
-            <div>
-              <h2>Puntuación: <span id="resultado">0</span></h2>
+            <div class="texto-pokemon-azul">
+              <h2>Intentos: <span id="intentos">0</span></h2>
             </div>
           </div>
-          <div id="display-mensajes" class="row justify-content-center mt-2 border border-2 border-dark rounded-3">
-            <div class="col-6 col-md-3 text-center">
-              <h2 id="mensaje"></h2>
-            </div>
+          <div id="mensaje" class="row mt-2 texto-pokemon-azul">
+
           </div>
         </div>
       </div>
@@ -38,94 +36,107 @@
   </header>
 
   <main class="container-fluid">
-    <div id="tablero">
-      <div class="row justify-content-center mt-2">
-        <div class="col-3">
-          <div class="card border-primary tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta1</h5>
-            </div>
+    <div id="tablero" class="desactivado">
+      <div class="row justify-content-center ">
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
+          </div>
+
+        </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
           </div>
         </div>
-        <div class="col-3">
-          <div class="card border-primary tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta2</h5>
-            </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
           </div>
         </div>
-        <div class="col-3">
-          <div class="card border-primary tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta3</h5>
-            </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
           </div>
-        </div>
-        <div class="col-3">
-          <div class="card border-primary tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta4</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center mt-2">
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta5</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta6</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta7</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta8</h5>
-            </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
           </div>
         </div>
       </div>
-      <div class="row justify-content-center mt-2">
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta9</h5>
-            </div>
+      <div class="row justify-content-center">
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
           </div>
         </div>
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta10</h5>
-            </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
           </div>
         </div>
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta11</h5>
-            </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
           </div>
         </div>
-        <div class="col-3">
-          <div class="card border-primary  tarjeta">
-            <div class="card-body text-primary">
-              <h5 class="card-title">carta12</h5>
-            </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
+          </div>
+        </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
+          </div>
+        </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
+          </div>
+        </div>
+        <div class="col-3 carta">
+          <div class="card border-primary tarjeta tarjeta-frontal">
+
+          </div>
+          <div class="card border-primary tarjeta tarjeta-trasera">
+
           </div>
         </div>
       </div>
