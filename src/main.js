@@ -79,9 +79,7 @@ function asignarImagenACadaTarjeta(barajaMezclada) {
 
     $imagen.src = `./img/${carta}.png`;
     $imagen.alt = carta;
-
     $carta.setAttribute("data-carta", carta);
-    $carta.setAttribute("data-numero-de-carta", index + 1);
   });
 }
 
@@ -94,7 +92,6 @@ function borrarImagenesDeTarjetas() {
       $tarjetaFrontal.removeChild($imagen);
     }
     $carta.removeAttribute("data-carta");
-    $carta.removeAttribute("data-numero-de-carta");
   });
 }
 
@@ -156,7 +153,6 @@ $cartas.forEach((carta) => {
   carta.addEventListener("click", (event) => {
     const $cartaClickeada = event.currentTarget;
     const nombreDeLaCarta = $cartaClickeada.dataset.carta;
-    const numeroDeLaCarta = $cartaClickeada.dataset.numeroDeCarta;
     const tiempoEsperaVolteo = 2000;
     if (
       $cartaClickeada.classList.contains("destapada") ||
@@ -168,7 +164,6 @@ $cartas.forEach((carta) => {
 
     if (!hayUnaTarjetaDestapada) {
       cartaDestapada.nombre = nombreDeLaCarta;
-      cartaDestapada.numero = numeroDeLaCarta;
       cartaDestapada.elemento = $cartaClickeada;
       agregarClase($cartaClickeada, "deshabilitada");
       hayUnaTarjetaDestapada = true;
