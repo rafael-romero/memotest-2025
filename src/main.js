@@ -46,12 +46,6 @@ function reiniciarTarjetaDestapada() {
   cartaDestapada.elemento = null;
 }
 
-function ocultarBotonIniciar($botonIniciar) {
-  if ($botonIniciar) {
-    $botonIniciar.classList.add("ocultar");
-  }
-}
-
 function mostrarTextoIntentos() {
   $textoIntentos.classList.remove("ocultar");
 }
@@ -132,7 +126,7 @@ $botonIniciar.addEventListener("click", () => {
   reiniciarTarjetaDestapada();
   borrarImagenesDeTarjetas();
   taparTodasLasTarjetas();
-  ocultarBotonIniciar($botonIniciar);
+  $botonIniciar.classList.add("ocultar");
   mostrarTextoIntentos();
   const barajaDoble = crearBarajaDoble(baraja);
   const barajaMezclada = mezclarBaraja(barajaDoble);
