@@ -133,59 +133,61 @@ function jugarNuevamente() {
   actualizarIntentos();
 }
 
+function manejarTurno($cartaClickeada) {
+  const nombreDeLaCarta = $cartaClickeada.dataset.carta;
+  if (
+    $cartaClickeada.classList.contains("destapada") ||
+    $cartaClickeada.classList.contains("deshabilitada")
+  ) {
+    return;
+  }
+
+  $cartaClickeada.classList.add("destapada");
+  if (!hayUnaTarjetaDestapada) {
+    cartaDestapada.nombre = nombreDeLaCarta;
+    cartaDestapada.elemento = $cartaClickeada;
+
+    $cartaClickeada.classList.add("deshabilitada");
+    hayUnaTarjetaDestapada = true;
+    return;
+  } else {
+    $cartaClickeada.classList.add("deshabilitada");
+    desactivarTablero();
+    if (cartaDestapada.nombre === nombreDeLaCarta) {
+      parejasEncontradas++;
+      actualizarMensajeTemporal("Bien hecho son iguales!!!");
+      reiniciarTarjetaDestapada();
+      if (parejasEncontradas * 2 === CANTIDAD_DE_TARJETAS) {
+        setTimeout(() => {
+          actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
+          $textoIntentos.classList.add("ocultar");
+        }, dosSegundosEnMs + 500);
+
+        setTimeout(jugarNuevamente, dosSegundosEnMs * 2);
+      } else {
+        setTimeout(activarTablero, dosSegundosEnMs);
+      }
+    } else {
+      actualizarMensajeTemporal("Mala suerte NO son iguales!!!");
+      setTimeout(() => {
+        $cartaClickeada.classList.remove("destapada", "deshabilitada");
+
+        if (cartaDestapada.elemento) {
+          cartaDestapada.elemento.classList.remove(
+            "destapada",
+            "deshabilitada"
+          );
+        }
+        activarTablero();
+        reiniciarTarjetaDestapada();
+      }, dosSegundosEnMs);
+    }
+    intentos++;
+    actualizarIntentos();
+  }
+}
 $cartas.forEach((carta) => {
   carta.addEventListener("click", (event) => {
-    const $cartaClickeada = event.currentTarget;
-    const nombreDeLaCarta = $cartaClickeada.dataset.carta;
-    if (
-      $cartaClickeada.classList.contains("destapada") ||
-      $cartaClickeada.classList.contains("deshabilitada")
-    ) {
-      return;
-    }
-
-    $cartaClickeada.classList.add("destapada");
-    if (!hayUnaTarjetaDestapada) {
-      cartaDestapada.nombre = nombreDeLaCarta;
-      cartaDestapada.elemento = $cartaClickeada;
-
-      $cartaClickeada.classList.add("deshabilitada");
-      hayUnaTarjetaDestapada = true;
-      return;
-    } else {
-      $cartaClickeada.classList.add("deshabilitada");
-      desactivarTablero();
-      if (cartaDestapada.nombre === nombreDeLaCarta) {
-        parejasEncontradas++;
-        actualizarMensajeTemporal("Bien hecho son iguales!!!");
-        reiniciarTarjetaDestapada();
-        if (parejasEncontradas * 2 === CANTIDAD_DE_TARJETAS) {
-          setTimeout(() => {
-            actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
-            $textoIntentos.classList.add("ocultar");
-          }, dosSegundosEnMs + 500);
-
-          setTimeout(jugarNuevamente, dosSegundosEnMs * 2);
-        } else {
-          setTimeout(activarTablero, dosSegundosEnMs);
-        }
-      } else {
-        actualizarMensajeTemporal("Mala suerte NO son iguales!!!");
-        setTimeout(() => {
-          $cartaClickeada.classList.remove("destapada", "deshabilitada");
-
-          if (cartaDestapada.elemento) {
-            cartaDestapada.elemento.classList.remove(
-              "destapada",
-              "deshabilitada"
-            );
-          }
-          activarTablero();
-          reiniciarTarjetaDestapada();
-        }, dosSegundosEnMs);
-      }
-      intentos++;
-      actualizarIntentos();
-    }
+    manejarTurno(event.currentTarget);
   });
 });
