@@ -8,6 +8,7 @@ let cartaDestapada = {
 };
 let parejasEncontradas = 0;
 
+const dosSegundosEnMs = 2000;
 let baraja = [
   "bellsprout",
   "caterpie",
@@ -105,7 +106,6 @@ function desactivarTablero() {
 }
 
 function mostrarMensaje(elemento, mensaje) {
-  const dosSegundos = 2000;
   const $elemento = document.querySelector(`${elemento}`);
   $elemento.textContent = mensaje;
   setTimeout(() => {
@@ -144,7 +144,6 @@ $cartas.forEach((carta) => {
   carta.addEventListener("click", (event) => {
     const $cartaClickeada = event.currentTarget;
     const nombreDeLaCarta = $cartaClickeada.dataset.carta;
-    const tiempoEsperaVolteo = 2000;
     if (
       $cartaClickeada.classList.contains("destapada") ||
       $cartaClickeada.classList.contains("deshabilitada")
@@ -170,11 +169,11 @@ $cartas.forEach((carta) => {
         if (parejasEncontradas * 2 === cantidadDeTarjetas) {
           setTimeout(() => {
             mostrarMensaje("#mensaje", `GANASTE en ${intentos} intentos!!!`);
-          }, tiempoEsperaVolteo + 500);
-          setTimeout(jugarNuevamente, tiempoEsperaVolteo * 2);
+          }, dosSegundosEnMs + 500);
+          setTimeout(jugarNuevamente, dosSegundosEnMs * 2);
           //aca intentos deberia ocultarse y activarse nuevamente cuando se aprieta el boton jugar
         } else {
-          setTimeout(activarTablero, tiempoEsperaVolteo);
+          setTimeout(activarTablero, dosSegundosEnMs);
         }
       } else {
         mostrarMensaje("#mensaje", "Mala suerte NO son iguales!!!");
@@ -189,7 +188,7 @@ $cartas.forEach((carta) => {
           }
           activarTablero();
           reiniciarTarjetaDestapada();
-        }, tiempoEsperaVolteo);
+        }, dosSegundosEnMs);
       }
       intentos++;
       actualizarIntentos(intentos);
