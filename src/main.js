@@ -23,6 +23,14 @@ const $contadorIntentos = document.querySelector("#intentos");
 const $textoIntentos = document.querySelector("#texto-intentos");
 const $cartas = document.querySelectorAll(".carta");
 
+const sonidoAcierto = new Audio("./sounds/acierto.mp3");
+const sonidoError = new Audio("./sounds/error.mp3");
+const sonidoComienzo = new Audio("./sounds/comienzo.mp3");
+const sonidoVictoria = new Audio("./sounds/victoria.mp3");
+const sonidoCortinaFondo = new Audio("./sounds/fondo_cortina.mp3");
+sonidoCortinaFondo.loop = true;
+sonidoCortinaFondo.volume = 0.1;
+
 $textoIntentos.classList.add("ocultar");
 
 function reiniciarContadores() {
@@ -117,8 +125,15 @@ function iniciarNuevoJuego() {
   const barajaMezclada = mezclarBaraja(barajaDoble);
   asignarImagenACadaTarjeta(barajaMezclada);
   actualizarMensajeTemporal("Bienvenido, juguemos!!!");
-  activarTablero();
+  setTimeout(activarTablero, dosSegundosEnMs * 1.5);
+  sonidoComienzo.play();
+  setTimeout(() => {
+    sonidoCortinaFondo.play().catch((e) => {
+      console.error("Error al reproducir el sonido de fondo:", e);
+    });
+  }, dosSegundosEnMs * 2);
 }
+
 const $botonIniciar = document.querySelector("#iniciar-btn");
 $botonIniciar.addEventListener("click", iniciarNuevoJuego);
 
@@ -154,14 +169,16 @@ function manejarTurno($cartaClickeada) {
     $cartaClickeada.classList.add("deshabilitada");
     desactivarTablero();
     if (cartaDestapada.nombre === nombreDeLaCarta) {
-      parejasEncontradas++;
+      sonidoAcierto.play();
       actualizarMensajeTemporal("Bien hecho son iguales!!!");
+      parejasEncontradas++;
       reiniciarTarjetaDestapada();
       if (parejasEncontradas * 2 === CANTIDAD_DE_TARJETAS) {
         setTimeout(() => {
+          sonidoVictoria.play();
           actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
           $textoIntentos.classList.add("ocultar");
-        }, dosSegundosEnMs + 500);
+        }, dosSegundosEnMs * 1.5);
 
         setTimeout(jugarNuevamente, dosSegundosEnMs * 2);
       } else {
@@ -169,6 +186,7 @@ function manejarTurno($cartaClickeada) {
       }
     } else {
       actualizarMensajeTemporal("Mala suerte NO son iguales!!!");
+      sonidoError.play();
       setTimeout(() => {
         $cartaClickeada.classList.remove("destapada", "deshabilitada");
 
