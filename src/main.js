@@ -21,6 +21,7 @@ let barajaActual = [];
 const $mensaje = document.querySelector("#mensaje");
 const $contadorIntentos = document.querySelector("#intentos");
 const $textoIntentos = document.querySelector("#texto-intentos");
+const $cartas = document.querySelectorAll(".carta");
 
 function ocultarTextoIntentos() {
   $textoIntentos.classList.add("ocultar");
@@ -57,7 +58,6 @@ function mezclarBaraja(barajaActual) {
 }
 
 function asignarImagenACadaTarjeta(barajaMezclada) {
-  const $cartas = document.querySelectorAll(".carta");
   $cartas.forEach(($carta, index) => {
     const carta = barajaMezclada[index];
     const $tarjetaFrontal = $carta.querySelector(".tarjeta-frontal");
@@ -76,7 +76,6 @@ function asignarImagenACadaTarjeta(barajaMezclada) {
 }
 
 function borrarImagenesDeTarjetas() {
-  const $cartas = document.querySelectorAll(".carta");
   $cartas.forEach(($carta) => {
     const $tarjetaFrontal = $carta.querySelector(".tarjeta-frontal");
     const $imagen = $tarjetaFrontal.querySelector(".imagen-carta");
@@ -141,7 +140,6 @@ function jugarNuevamente() {
   actualizarIntentos();
 }
 
-const $cartas = document.querySelectorAll(".carta");
 $cartas.forEach((carta) => {
   carta.addEventListener("click", (event) => {
     const $cartaClickeada = event.currentTarget;
