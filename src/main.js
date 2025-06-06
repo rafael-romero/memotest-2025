@@ -8,6 +8,8 @@ let cartaDestapada = {
 };
 let parejasEncontradas = 0;
 const $mensaje = document.querySelector("#mensaje");
+const $contadorIntentos = document.querySelector("#intentos");
+const $textoIntentos = document.querySelector("#texto-intentos");
 let mensajeTimeoutId;
 const dosSegundosEnMs = 2000;
 let baraja = [
@@ -18,6 +20,11 @@ let baraja = [
   "dratini",
   "eeveee",
 ];
+
+function ocultarTextoIntentos() {
+  $textoIntentos.classList.add("ocultar");
+}
+ocultarTextoIntentos();
 
 function reiniciarContadores() {
   intentos = 0;
@@ -43,6 +50,10 @@ function ocultarBotonIniciar($botonIniciar) {
   if ($botonIniciar) {
     $botonIniciar.classList.add("ocultar");
   }
+}
+
+function mostrarTextoIntentos() {
+  $textoIntentos.classList.remove("ocultar");
 }
 
 function crearBarajaDoble(baraja) {
@@ -122,6 +133,7 @@ $botonIniciar.addEventListener("click", () => {
   borrarImagenesDeTarjetas();
   taparTodasLasTarjetas();
   ocultarBotonIniciar($botonIniciar);
+  mostrarTextoIntentos();
   const barajaDoble = crearBarajaDoble(baraja);
   const barajaMezclada = mezclarBaraja(barajaDoble);
   asignarImagenACadaTarjeta(barajaMezclada);
@@ -130,7 +142,6 @@ $botonIniciar.addEventListener("click", () => {
 });
 
 function actualizarIntentos(intentos) {
-  const $contadorIntentos = document.querySelector("#intentos");
   $contadorIntentos.textContent = intentos;
 }
 
@@ -171,9 +182,10 @@ $cartas.forEach((carta) => {
         if (parejasEncontradas * 2 === CANTIDAD_DE_TARJETAS) {
           setTimeout(() => {
             actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
+            ocultarTextoIntentos();
           }, dosSegundosEnMs + 500);
+
           setTimeout(jugarNuevamente, dosSegundosEnMs * 2);
-          //aca intentos deberia ocultarse y activarse nuevamente cuando se aprieta el boton jugar
         } else {
           setTimeout(activarTablero, dosSegundosEnMs);
         }
