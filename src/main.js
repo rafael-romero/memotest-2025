@@ -4,7 +4,9 @@ let hayUnaTarjetaDestapada = false;
 let cartaDestapada = {
   nombre: "",
   numero: "",
+  elemento: null,
 };
+let parejasEncontradas = 0;
 
 let baraja = [
   "bellsprout",
@@ -18,6 +20,7 @@ let baraja = [
 function reiniciarContadores() {
   intentos = 0;
   cantidadDeTarjetas = 12;
+  parejasEncontradas = 0;
   baraja = [
     "bellsprout",
     "caterpie",
@@ -32,6 +35,7 @@ function reiniciarTarjetaDestapada() {
   hayUnaTarjetaDestapada = false;
   cartaDestapada.nombre = "";
   cartaDestapada.numero = "";
+  cartaDestapada.elemento = null;
 }
 
 function quitarClase(elemento, clase) {
@@ -61,27 +65,36 @@ function mezclarBaraja(baraja) {
 }
 
 function asignarImagenACadaTarjeta(barajaMezclada) {
-  const $tarjetas = document.querySelectorAll(".tarjeta-frontal");
-  $tarjetas.forEach(($tarjeta, index) => {
+  const $cartas = document.querySelectorAll(".carta");
+  $cartas.forEach(($carta, index) => {
     const carta = barajaMezclada[index];
-    const $imagen = document.createElement("img");
+    const $tarjetaFrontal = $carta.querySelector(".tarjeta-frontal");
+    let $imagen = $tarjetaFrontal.querySelector(".imagen-carta");
+
+    if (!$imagen) {
+      $imagen = document.createElement("img");
+      $imagen.classList.add("imagen-carta");
+      $tarjetaFrontal.appendChild($imagen);
+    }
+
     $imagen.src = `./img/${carta}.png`;
-    $imagen.classList.add("imagen-carta");
-    $tarjeta.setAttribute("data-carta", carta);
-    $tarjeta.setAttribute("data-numero-de-carta", index + 1);
-    $tarjeta.appendChild($imagen);
+    $imagen.alt = carta;
+
+    $carta.setAttribute("data-carta", carta);
+    $carta.setAttribute("data-numero-de-carta", index + 1);
   });
 }
 
 function borrarImagenesDeTarjetas() {
-  const $tarjetas = document.querySelectorAll(".tarjeta-frontal");
-  $tarjetas.forEach((tarjeta) => {
-    const $imagen = tarjeta.querySelector(".imagen-carta");
+  const $cartas = document.querySelectorAll(".carta");
+  $cartas.forEach(($carta) => {
+    const $tarjetaFrontal = $carta.querySelector(".tarjeta-frontal");
+    const $imagen = $tarjetaFrontal.querySelector(".imagen-carta");
     if ($imagen) {
-      tarjeta.removeChild($imagen);
-      tarjeta.removeAttribute("data-carta");
-      tarjeta.removeAttribute("data-numero-de-carta");
+      $tarjetaFrontal.removeChild($imagen);
     }
+    $carta.removeAttribute("data-carta");
+    $carta.removeAttribute("data-numero-de-carta");
   });
 }
 
@@ -134,61 +147,64 @@ function actualizarIntentos(intentos) {
 function jugarNuevamente() {
   $botonIniciar.textContent = "Jugamos de nuevo?";
   quitarClase($botonIniciar, "ocultar");
+  intentos = 0;
+  actualizarIntentos(intentos);
 }
 
 const $cartas = document.querySelectorAll(".carta");
 $cartas.forEach((carta) => {
   carta.addEventListener("click", (event) => {
-    const tarjeta = event.currentTarget;
-    const hijoDeTarjeta = tarjeta.firstElementChild;
-    const nombreDeLaCarta = hijoDeTarjeta.getAttribute("data-carta");
-    const numeroDeLaCarta = hijoDeTarjeta.getAttribute("data-numero-de-carta");
-    const dosSegundos = 2000;
+    const $cartaClickeada = event.currentTarget;
+    const nombreDeLaCarta = $cartaClickeada.dataset.carta;
+    const numeroDeLaCarta = $cartaClickeada.dataset.numeroDeCarta;
+    const tiempoEsperaVolteo = 2000;
+    if (
+      $cartaClickeada.classList.contains("destapada") ||
+      $cartaClickeada.classList.contains("deshabilitada")
+    ) {
+      return;
+    }
+    agregarClase($cartaClickeada, "destapada");
+
     if (!hayUnaTarjetaDestapada) {
       cartaDestapada.nombre = nombreDeLaCarta;
       cartaDestapada.numero = numeroDeLaCarta;
-      agregarClase(tarjeta, "destapada");
-      agregarClase(tarjeta, "deshabilitada");
+      cartaDestapada.elemento = $cartaClickeada;
+      agregarClase($cartaClickeada, "deshabilitada");
       hayUnaTarjetaDestapada = true;
       return;
     } else {
-      agregarClase(tarjeta, "destapada");
-      agregarClase(tarjeta, "deshabilitada");
+      agregarClase($cartaClickeada, "deshabilitada");
       desactivarTablero();
       if (cartaDestapada.nombre === nombreDeLaCarta) {
-        reiniciarTarjetaDestapada();
-        intentos++;
-        actualizarIntentos(intentos);
-        cantidadDeTarjetas -= 2;
+        parejasEncontradas++;
         mostrarMensaje("#mensaje", "Bien hecho son iguales!!!");
-        if (0 === cantidadDeTarjetas) {
+        reiniciarTarjetaDestapada();
+        if (parejasEncontradas * 2 === cantidadDeTarjetas) {
           setTimeout(() => {
-            mostrarMensaje(
-              "#mensaje",
-              `Lo conseguiste, GANASTE en ${intentos} intentos!!!`
-            );
-          }, dosSegundos);
-          setTimeout(jugarNuevamente, dosSegundos + 1000);
+            mostrarMensaje("#mensaje", `GANASTE en ${intentos} intentos!!!`);
+          }, tiempoEsperaVolteo + 500);
+          setTimeout(jugarNuevamente, tiempoEsperaVolteo * 2);
+          //aca intentos deberia ocultarse y activarse nuevamente cuando se aprieta el boton jugar
         } else {
-          setTimeout(activarTablero, dosSegundos);
+          setTimeout(activarTablero, tiempoEsperaVolteo);
         }
       } else {
-        intentos++;
-        actualizarIntentos(intentos);
         mostrarMensaje("#mensaje", "Mala suerte NO son iguales!!!");
         setTimeout(() => {
-          quitarClase(tarjeta, "destapada");
-          quitarClase(tarjeta, "deshabilitada");
-          const $tarjetaDestapada = document.querySelector(
-            `[data-numero-de-carta="${cartaDestapada.numero}"]`
-          );
-          const $papaTarjetaDestapada = $tarjetaDestapada.parentElement;
-          quitarClase($papaTarjetaDestapada, "destapada");
-          quitarClase($papaTarjetaDestapada, "deshabilitada");
+          quitarClase($cartaClickeada, "destapada");
+          quitarClase($cartaClickeada, "deshabilitada");
+
+          if (cartaDestapada.elemento) {
+            quitarClase(cartaDestapada.elemento, "destapada");
+            quitarClase(cartaDestapada.elemento, "deshabilitada");
+          }
           activarTablero();
-        }, dosSegundos);
-        setTimeout(reiniciarTarjetaDestapada, dosSegundos);
+          reiniciarTarjetaDestapada();
+        }, tiempoEsperaVolteo);
       }
+      intentos++;
+      actualizarIntentos(intentos);
     }
   });
 });
