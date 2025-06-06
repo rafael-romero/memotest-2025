@@ -1,4 +1,13 @@
 const CANTIDAD_DE_TARJETAS = 12;
+const POKEMONS = [
+  "bellsprout",
+  "caterpie",
+  "charmander",
+  "chikorita",
+  "dratini",
+  "eeveee",
+];
+const dosSegundosEnMs = 2000;
 let intentos = 0;
 let hayUnaTarjetaDestapada = false;
 let cartaDestapada = {
@@ -7,19 +16,11 @@ let cartaDestapada = {
   elemento: null,
 };
 let parejasEncontradas = 0;
+let mensajeTimeoutId;
+let barajaActual = [];
 const $mensaje = document.querySelector("#mensaje");
 const $contadorIntentos = document.querySelector("#intentos");
 const $textoIntentos = document.querySelector("#texto-intentos");
-let mensajeTimeoutId;
-const dosSegundosEnMs = 2000;
-let baraja = [
-  "bellsprout",
-  "caterpie",
-  "charmander",
-  "chikorita",
-  "dratini",
-  "eeveee",
-];
 
 function ocultarTextoIntentos() {
   $textoIntentos.classList.add("ocultar");
@@ -29,14 +30,7 @@ ocultarTextoIntentos();
 function reiniciarContadores() {
   intentos = 0;
   parejasEncontradas = 0;
-  baraja = [
-    "bellsprout",
-    "caterpie",
-    "charmander",
-    "chikorita",
-    "dratini",
-    "eeveee",
-  ];
+  barajaActual = [...POKEMONS];
 }
 
 function reiniciarTarjetaDestapada() {
@@ -50,16 +44,16 @@ function mostrarTextoIntentos() {
   $textoIntentos.classList.remove("ocultar");
 }
 
-function crearBarajaDoble(baraja) {
-  return baraja.flatMap((carta) => [carta, carta]);
+function crearBarajaDoble(barajaActual) {
+  return barajaActual.flatMap((carta) => [carta, carta]);
 }
 
-function mezclarBaraja(baraja) {
-  for (let i = baraja.length - 1; i > 0; i--) {
+function mezclarBaraja(barajaActual) {
+  for (let i = barajaActual.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [baraja[i], baraja[j]] = [baraja[j], baraja[i]];
+    [barajaActual[i], barajaActual[j]] = [barajaActual[j], barajaActual[i]];
   }
-  return baraja;
+  return barajaActual;
 }
 
 function asignarImagenACadaTarjeta(barajaMezclada) {
@@ -127,7 +121,7 @@ function iniciarNuevoJuego() {
   taparTodasLasTarjetas();
   $botonIniciar.classList.add("ocultar");
   mostrarTextoIntentos();
-  const barajaDoble = crearBarajaDoble(baraja);
+  const barajaDoble = crearBarajaDoble(barajaActual);
   const barajaMezclada = mezclarBaraja(barajaDoble);
   asignarImagenACadaTarjeta(barajaMezclada);
   actualizarMensajeTemporal("Bienvenido, juguemos!!!");
