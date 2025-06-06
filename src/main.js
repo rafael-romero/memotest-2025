@@ -7,7 +7,8 @@ let cartaDestapada = {
   elemento: null,
 };
 let parejasEncontradas = 0;
-
+const $mensaje = document.querySelector("#mensaje");
+let mensajeTimeoutId;
 const dosSegundosEnMs = 2000;
 let baraja = [
   "bellsprout",
@@ -105,12 +106,14 @@ function desactivarTablero() {
   $tablero.classList.add("desactivado");
 }
 
-function mostrarMensaje(elemento, mensaje) {
-  const $elemento = document.querySelector(`${elemento}`);
-  $elemento.textContent = mensaje;
-  setTimeout(() => {
-    $elemento.textContent = "";
-  }, dosSegundos);
+function actualizarMensajeTemporal(mensaje) {
+  clearTimeout(mensajeTimeoutId);
+  $mensaje.textContent = mensaje;
+  $mensaje.style.visibility = "visible";
+  mensajeTimeoutId = setTimeout(() => {
+    $mensaje.textContent = "";
+    $mensaje.style.visibility = "hidden";
+  }, dosSegundosEnMs);
 }
 
 const $botonIniciar = document.querySelector("#iniciar-btn");
@@ -123,7 +126,7 @@ $botonIniciar.addEventListener("click", () => {
   const barajaDoble = crearBarajaDoble(baraja);
   const barajaMezclada = mezclarBaraja(barajaDoble);
   asignarImagenACadaTarjeta(barajaMezclada);
-  mostrarMensaje("#mensaje", "Bienvenido, juguemos!!!");
+  actualizarMensajeTemporal("Bienvenido, juguemos!!!");
   activarTablero();
 });
 
@@ -164,11 +167,11 @@ $cartas.forEach((carta) => {
       desactivarTablero();
       if (cartaDestapada.nombre === nombreDeLaCarta) {
         parejasEncontradas++;
-        mostrarMensaje("#mensaje", "Bien hecho son iguales!!!");
+        actualizarMensajeTemporal("Bien hecho son iguales!!!");
         reiniciarTarjetaDestapada();
         if (parejasEncontradas * 2 === cantidadDeTarjetas) {
           setTimeout(() => {
-            mostrarMensaje("#mensaje", `GANASTE en ${intentos} intentos!!!`);
+            actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
           }, dosSegundosEnMs + 500);
           setTimeout(jugarNuevamente, dosSegundosEnMs * 2);
           //aca intentos deberia ocultarse y activarse nuevamente cuando se aprieta el boton jugar
@@ -176,7 +179,7 @@ $cartas.forEach((carta) => {
           setTimeout(activarTablero, dosSegundosEnMs);
         }
       } else {
-        mostrarMensaje("#mensaje", "Mala suerte NO son iguales!!!");
+        actualizarMensajeTemporal("Mala suerte NO son iguales!!!");
         setTimeout(() => {
           $cartaClickeada.classList.remove("destapada", "deshabilitada");
 
