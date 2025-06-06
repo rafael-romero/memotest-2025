@@ -10,138 +10,76 @@
   <link rel='stylesheet' type='text/css' media='screen' href='src/style.css'>
 </head>
 
-<body>
-  <header>
-    <div class="container container-fluid">
-
-      <div class="row justify-content-center">
-        <div class="col-6 col-md-6 text-center">
-
-          <img id="titulo" src="./img/Duelo-de-Memoria-Pokemon-23-5-2025.png" alt="titulo duelo de memoria pokemon">
-          <button id="iniciar-btn" class="btn btn-primary texto-pokemon-azul">Iniciar Juego</button>
-        </div>
-        <div id="pizarra-anotacion" class="col-6 col-md-6 text-center">
-          <div class="row justify-content-center">
-            <div class="texto-pokemon-azul">
-              <h2>Intentos: <span id="intentos">0</span></h2>
-            </div>
-          </div>
-          <div id="mensaje" class="row mt-2 texto-pokemon-azul">
-
-          </div>
+<body class="d-flex flex-column min-vh-100">
+  <header class="container-fluid">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md-6 text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center"> <img id="titulo"
+          src="./img/Duelo-de-Memoria-Pokemon-23-5-2025.png" alt="Duelo de Memoria Pokemon" class="img-fluid" />
+        <button id="iniciar-btn" class="btn btn-primary btn-lg mt-3 texto-pokemon-azul">Iniciar Juego</button>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <div id="pizarra-anotacion" class="d-flex flex-column align-items-start justify-content-center">
+          <p id="mensaje" class="texto-pokemon-azul"></p>
+          <p class="texto-pokemon-azul">Intentos: <span id="intentos">0</span></p>
         </div>
       </div>
-
     </div>
   </header>
 
-  <main class="container-fluid">
-    <div id="tablero" class="desactivado">
-      <div class="row justify-content-center ">
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
+  <main class="flex-grow-1 d-flex justify-content-center align-items-center">
+    <div id="tablero" class="container-fluid d-flex flex-wrap justify-content-center desactivado">
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
-        <div class="col-3 carta">
-          <div class="card border-primary tarjeta tarjeta-frontal">
-
-          </div>
-          <div class="card border-primary tarjeta tarjeta-trasera">
-
-          </div>
-        </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
+      </div>
+      <div class="col-3 carta">
+        <div class="tarjeta-frontal"></div>
+        <div class="tarjeta-trasera"></div>
       </div>
     </div>
-    <script src='src/main.js'></script>
+  </main>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src='src/main.js'></script>
 </body>
 
 </html>
