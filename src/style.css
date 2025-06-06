@@ -47,6 +47,8 @@ header {
   padding: 0.5rem 1rem;
   transition: opacity 0.3s ease-in-out;
   font-size: 1.5em;
+  position: relative;
+  top: -40px;
 }
 
 #iniciar-btn:hover {
@@ -59,7 +61,11 @@ header {
 }
 
 #mensaje {
-  margin: 0;
+  margin-top: 0;
+  padding-top: 0.5rem;
+  min-height: 2em;
+  margin-bottom: 0;
+  box-sizing: border-box;
 }
 
 #tablero {
@@ -135,7 +141,7 @@ header {
 }
 
 .ocultar {
-  display: none;
+  visibility: hidden;
 }
 
 .deshabilitada {
