@@ -147,8 +147,8 @@ function actualizarIntentos(intentos) {
 function jugarNuevamente() {
   $botonIniciar.textContent = "Jugamos de nuevo?";
   quitarClase($botonIniciar, "ocultar");
-  intentos = 0; 
-  actualizarIntentos(intentos); 
+  intentos = 0;
+  actualizarIntentos(intentos);
 }
 
 const $cartas = document.querySelectorAll(".carta");
@@ -157,7 +157,7 @@ $cartas.forEach((carta) => {
     const $cartaClickeada = event.currentTarget;
     const nombreDeLaCarta = $cartaClickeada.dataset.carta;
     const numeroDeLaCarta = $cartaClickeada.dataset.numeroDeCarta;
-    const tiempoEsperaVolteo = 1000;
+    const tiempoEsperaVolteo = 2000;
     if (
       $cartaClickeada.classList.contains("destapada") ||
       $cartaClickeada.classList.contains("deshabilitada")
@@ -180,32 +180,20 @@ $cartas.forEach((carta) => {
         parejasEncontradas++;
         mostrarMensaje("#mensaje", "Bien hecho son iguales!!!");
         reiniciarTarjetaDestapada();
-        // intentos++;
-        // actualizarIntentos(intentos);
-        // cantidadDeTarjetas -= 2;
-        // if (0 === cantidadDeTarjetas)
         if (parejasEncontradas * 2 === cantidadDeTarjetas) {
           setTimeout(() => {
-            mostrarMensaje(
-              "#mensaje",
-              `Lo conseguiste, GANASTE en ${intentos} intentos!!!`
-            );
-          }, tiempoEsperaVolteo);
-          setTimeout(jugarNuevamente, tiempoEsperaVolteo + 1000);
+            mostrarMensaje("#mensaje", `GANASTE en ${intentos} intentos!!!`);
+          }, tiempoEsperaVolteo + 500);
+          setTimeout(jugarNuevamente, tiempoEsperaVolteo * 2);
+          //aca intentos deberia ocultarse y activarse nuevamente cuando se aprieta el boton jugar
         } else {
           setTimeout(activarTablero, tiempoEsperaVolteo);
         }
       } else {
-        // intentos++;
-        // actualizarIntentos(intentos);
         mostrarMensaje("#mensaje", "Mala suerte NO son iguales!!!");
         setTimeout(() => {
           quitarClase($cartaClickeada, "destapada");
           quitarClase($cartaClickeada, "deshabilitada");
-
-          // const $primeraCartaDestapada = document.querySelector(
-          //   `.carta[data-numero-de-carta="${cartaDestapada.numero}"]`
-          // );
 
           if (cartaDestapada.elemento) {
             quitarClase(cartaDestapada.elemento, "destapada");
