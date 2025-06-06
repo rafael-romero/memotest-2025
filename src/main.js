@@ -1,5 +1,5 @@
 let intentos = 0;
-let cantidadDeTarjetas = 12;
+const CANTIDAD_DE_TARJETAS = 12;
 let hayUnaTarjetaDestapada = false;
 let cartaDestapada = {
   nombre: "",
@@ -21,7 +21,6 @@ let baraja = [
 
 function reiniciarContadores() {
   intentos = 0;
-  cantidadDeTarjetas = 12;
   parejasEncontradas = 0;
   baraja = [
     "bellsprout",
@@ -169,7 +168,7 @@ $cartas.forEach((carta) => {
         parejasEncontradas++;
         actualizarMensajeTemporal("Bien hecho son iguales!!!");
         reiniciarTarjetaDestapada();
-        if (parejasEncontradas * 2 === cantidadDeTarjetas) {
+        if (parejasEncontradas * 2 === CANTIDAD_DE_TARJETAS) {
           setTimeout(() => {
             actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
           }, dosSegundosEnMs + 500);
