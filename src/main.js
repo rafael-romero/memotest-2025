@@ -23,10 +23,7 @@ const $contadorIntentos = document.querySelector("#intentos");
 const $textoIntentos = document.querySelector("#texto-intentos");
 const $cartas = document.querySelectorAll(".carta");
 
-function ocultarTextoIntentos() {
-  $textoIntentos.classList.add("ocultar");
-}
-ocultarTextoIntentos();
+$textoIntentos.classList.add("ocultar");
 
 function reiniciarContadores() {
   intentos = 0;
@@ -39,10 +36,6 @@ function reiniciarTarjetaDestapada() {
   cartaDestapada.nombre = "";
   cartaDestapada.numero = "";
   cartaDestapada.elemento = null;
-}
-
-function mostrarTextoIntentos() {
-  $textoIntentos.classList.remove("ocultar");
 }
 
 function crearBarajaDoble(barajaActual) {
@@ -119,7 +112,7 @@ function iniciarNuevoJuego() {
   borrarImagenesDeTarjetas();
   taparTodasLasTarjetas();
   $botonIniciar.classList.add("ocultar");
-  mostrarTextoIntentos();
+  $textoIntentos.classList.remove("ocultar");
   const barajaDoble = crearBarajaDoble(barajaActual);
   const barajaMezclada = mezclarBaraja(barajaDoble);
   asignarImagenACadaTarjeta(barajaMezclada);
@@ -169,7 +162,7 @@ $cartas.forEach((carta) => {
         if (parejasEncontradas * 2 === CANTIDAD_DE_TARJETAS) {
           setTimeout(() => {
             actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
-            ocultarTextoIntentos();
+            $textoIntentos.classList.add("ocultar");
           }, dosSegundosEnMs + 500);
 
           setTimeout(jugarNuevamente, dosSegundosEnMs * 2);
