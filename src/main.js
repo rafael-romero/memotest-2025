@@ -120,8 +120,7 @@ function actualizarMensajeTemporal(mensaje) {
   }, dosSegundosEnMs);
 }
 
-const $botonIniciar = document.querySelector("#iniciar-btn");
-$botonIniciar.addEventListener("click", () => {
+function iniciarNuevoJuego() {
   reiniciarContadores();
   reiniciarTarjetaDestapada();
   borrarImagenesDeTarjetas();
@@ -133,7 +132,9 @@ $botonIniciar.addEventListener("click", () => {
   asignarImagenACadaTarjeta(barajaMezclada);
   actualizarMensajeTemporal("Bienvenido, juguemos!!!");
   activarTablero();
-});
+}
+const $botonIniciar = document.querySelector("#iniciar-btn");
+$botonIniciar.addEventListener("click", iniciarNuevoJuego);
 
 function actualizarIntentos(intentos) {
   $contadorIntentos.textContent = intentos;
