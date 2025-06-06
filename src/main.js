@@ -1,5 +1,5 @@
-let intentos = 0;
 const CANTIDAD_DE_TARJETAS = 12;
+let intentos = 0;
 let hayUnaTarjetaDestapada = false;
 let cartaDestapada = {
   nombre: "",
@@ -136,7 +136,7 @@ function iniciarNuevoJuego() {
 const $botonIniciar = document.querySelector("#iniciar-btn");
 $botonIniciar.addEventListener("click", iniciarNuevoJuego);
 
-function actualizarIntentos(intentos) {
+function actualizarIntentos() {
   $contadorIntentos.textContent = intentos;
 }
 
@@ -144,7 +144,7 @@ function jugarNuevamente() {
   $botonIniciar.textContent = "Jugamos de nuevo?";
   $botonIniciar.classList.remove("ocultar");
   intentos = 0;
-  actualizarIntentos(intentos);
+  actualizarIntentos();
 }
 
 const $cartas = document.querySelectorAll(".carta");
@@ -200,7 +200,7 @@ $cartas.forEach((carta) => {
         }, dosSegundosEnMs);
       }
       intentos++;
-      actualizarIntentos(intentos);
+      actualizarIntentos();
     }
   });
 });
