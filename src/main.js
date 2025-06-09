@@ -21,8 +21,10 @@ let barajaActual = [];
 const $mensaje = document.querySelector("#mensaje");
 const $contadorIntentos = document.querySelector("#intentos");
 const $textoIntentos = document.querySelector("#texto-intentos");
+$textoIntentos.classList.add("ocultar");
 const $cartas = document.querySelectorAll(".carta");
 
+let sonidoActivado = true;
 const sonidoAcierto = new Audio("./sounds/acierto.mp3");
 const sonidoError = new Audio("./sounds/error.mp3");
 const sonidoComienzo = new Audio("./sounds/comienzo.mp3");
@@ -31,7 +33,33 @@ const sonidoCortinaFondo = new Audio("./sounds/fondo_cortina.mp3");
 sonidoCortinaFondo.loop = true;
 sonidoCortinaFondo.volume = 0.1;
 
-$textoIntentos.classList.add("ocultar");
+const $controlVolumenIcono = document.querySelector("#control-volumen i");
+$controlVolumenIcono.addEventListener("click", () => {
+  sonidoActivado = !sonidoActivado;
+  if (sonidoActivado) {
+    $controlVolumenIcono.classList.remove("fa-volume-mute");
+    $controlVolumenIcono.classList.add("fa-volume-up");
+    sonidoAcierto.muted = false;
+    sonidoError.muted = false;
+    sonidoComienzo.muted = false;
+    sonidoVictoria.muted = false;
+    sonidoCortinaFondo.muted = false;
+    sonidoCortinaFondo.volume = 0.1;
+    if (sonidoCortinaFondo.paused) {
+      sonidoCortinaFondo.play().catch((e) => {
+        console.error("Error al reproducir el sonido de fondo:", e);
+      });
+    }
+  } else {
+    $controlVolumenIcono.classList.remove("fa-volume-up");
+    $controlVolumenIcono.classList.add("fa-volume-mute");
+    sonidoAcierto.muted = true;
+    sonidoError.muted = true;
+    sonidoComienzo.muted = true;
+    sonidoVictoria.muted = true;
+    sonidoCortinaFondo.muted = true;
+  }
+});
 
 function reiniciarContadores() {
   intentos = 0;

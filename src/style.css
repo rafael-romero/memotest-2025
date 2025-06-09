@@ -147,3 +147,12 @@ header {
 .deshabilitada {
   pointer-events: none;
 }
+
+#control-volumen i {
+  font-size: 1.8rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#control-volumen i:hover {
+  opacity: 0.8;
+}
