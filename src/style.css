@@ -148,11 +148,28 @@ header {
   pointer-events: none;
 }
 
-#control-volumen i {
-  font-size: 1.8rem;
-  transition: opacity 0.2s ease-in-out;
+#control-volumen {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease-in-out;
 }
 
-#control-volumen i:hover {
-  opacity: 0.8;
+#control-volumen:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#control-volumen i.texto-pokemon-azul {
+  color: #007bff;
+  font-size: 2rem;
 }
