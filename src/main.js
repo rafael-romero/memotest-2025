@@ -1,4 +1,4 @@
-const CANTIDAD_DE_TARJETAS = 12;
+const CANTIDAD_DE_TARJETAS = 18;
 const POKEMONS = [
   "bellsprout",
   "caterpie",
@@ -6,6 +6,9 @@ const POKEMONS = [
   "chikorita",
   "dratini",
   "eeveee",
+  "pikachu",
+  "squirtle",
+  "bullbasaur",
 ];
 const dosSegundosEnMs = 2000;
 let intentos = 0;
