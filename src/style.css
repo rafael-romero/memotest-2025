@@ -97,6 +97,30 @@ header {
   box-sizing: border-box;
   border: 4px solid #007bff;
   border-radius: 0.9rem;
+  cursor: pointer;
+}
+
+.col-3.carta:not(.destapada):not(.deshabilitada) {
+  cursor: pointer;
+}
+
+.col-3.carta:not(.destapada):not(.deshabilitada):hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 20px rgba(59, 76, 202, 0.4);
+}
+
+.col-3.carta.destapada,
+.col-3.carta.deshabilitada,
+#tablero.desactivado .col-3.carta {
+  cursor: not-allowed;
+}
+
+.col-3.carta.ocultar {
+  cursor: default;
+  opacity: 0.3;
+  transform: scale(0.95);
 }
 
 .tarjeta-trasera,
