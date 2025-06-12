@@ -28,11 +28,11 @@ $textoIntentos.classList.add("ocultar");
 const $cartas = document.querySelectorAll(".carta");
 
 let sonidoActivado = true;
-const sonidoAcierto = new Audio("./sounds/acierto.mp3");
-const sonidoError = new Audio("./sounds/error.mp3");
-const sonidoComienzo = new Audio("./sounds/comienzo.mp3");
-const sonidoVictoria = new Audio("./sounds/victoria.mp3");
-const sonidoCortinaFondo = new Audio("./sounds/fondo_cortina.mp3");
+const sonidoAcierto = new Audio("./src/sounds/acierto.mp3");
+const sonidoError = new Audio("./src/sounds/error.mp3");
+const sonidoComienzo = new Audio("./src/sounds/comienzo.mp3");
+const sonidoVictoria = new Audio("./src/sounds/victoria.mp3");
+const sonidoCortinaFondo = new Audio("./src/sounds/fondo_cortina.mp3");
 sonidoCortinaFondo.loop = true;
 sonidoCortinaFondo.volume = 0.1;
 
@@ -101,7 +101,7 @@ function asignarImagenACadaTarjeta(barajaMezclada) {
       $tarjetaFrontal.appendChild($imagen);
     }
 
-    $imagen.src = `./img/${carta}.png`;
+    $imagen.src = `./src/img/${carta}.png`;
     $imagen.alt = carta;
     $carta.setAttribute("data-carta", carta);
   });
