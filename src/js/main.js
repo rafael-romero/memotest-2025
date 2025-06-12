@@ -169,7 +169,7 @@ const $botonIniciar = document.querySelector("#iniciar-btn");
 $botonIniciar.addEventListener("click", iniciarNuevoJuego);
 
 function actualizarIntentos() {
-  $contadorIntentos.textContent = intentos;
+  $contadorIntentos.textContent = intentos.toString();
 }
 
 function jugarNuevamente() {
