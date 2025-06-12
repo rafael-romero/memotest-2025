@@ -41,20 +41,62 @@ header {
 }
 
 #iniciar-btn {
-  background-color: #f1721b;
-  border-color: #d1560c;
-  border: 3px solid #d1560c;
+  background: linear-gradient(135deg, #ffcb05 0%, #f1721b 50%, #3b4cca 100%);
+  border: 3px solid #ffcb05;
   min-width: 150px;
   padding: 0.5rem 1rem;
-  transition: opacity 0.3s ease-in-out;
   font-size: 1.5em;
   position: relative;
   top: -40px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 30px rgba(255, 203, 5, 0.6);
+  animation: combo-glow 2.5s ease-in-out infinite alternate;
+  overflow: hidden;
+  color: #3b4cca;
+  text-shadow: -1px -1px 0 #ffcb05, 1px -1px 0 #ffcb05, -1px 1px 0 #ffcb05,
+    1px 1px 0 #ffcb05, 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#iniciar-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s linear infinite;
 }
 
 #iniciar-btn:hover {
-  background-color: #d1560c;
-  border-color: #ac4508;
+  transform: scale(1.1) translateY(-2px);
+  animation-play-state: paused;
+  box-shadow: 0 8px 40px rgba(255, 203, 5, 0.8);
+  background: linear-gradient(135deg, #f1c905 0%, #e0651a 50%, #2a3bb5 100%);
+}
+
+@keyframes combo-glow {
+  0% {
+    box-shadow: 0 0 30px rgba(255, 203, 5, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(59, 76, 202, 0.8);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
 }
 
 #pizarra-anotacion {
