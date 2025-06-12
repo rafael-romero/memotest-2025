@@ -207,7 +207,7 @@ function manejarTurno($cartaClickeada) {
       if (parejasEncontradas * 2 === CANTIDAD_DE_TARJETAS) {
         setTimeout(() => {
           sonidoVictoria.play();
-          actualizarMensajeTemporal(`GANASTE en ${intentos} intentos!!!`);
+          actualizarMensajeTemporal(`GANASTE en ${intentos.toString()} intentos!!!`);
           $textoIntentos.classList.add("ocultar");
         }, dosSegundosEnMs * 1.5);
 
