@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Círculo exterior -->
+  <circle cx="32" cy="32" r="30" fill="#3b4cca" stroke="#ffcb05" stroke-width="2"/>
+  
+  <!-- Parte superior amarilla -->
+  <path d="M 2,32 A 30,30 0 0,1 62,32 Z" fill="#ffcb05"/>
+  
+  <!-- Línea divisoria central -->
+  <line x1="2" y1="32" x2="62" y2="32" stroke="#ffcb05" stroke-width="3"/>
+  
+  <!-- Círculo central -->
+  <circle cx="32" cy="32" r="8" fill="white" stroke="#3b4cca" stroke-width="2"/>
+  
+  <!-- Botón central -->
+  <circle cx="32" cy="32" r="4" fill="#3b4cca"/>
+  
+  <!-- Brillo en el botón -->
+  <circle cx="30" cy="30" r="1.5" fill="white" opacity="0.8"/>
+</svg>
