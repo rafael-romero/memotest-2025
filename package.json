@@ -4,7 +4,7 @@
   "description": "Juego Memotest para r/Argentina Programa",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-server": "http-server"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/rafael-romero/memotest-2025/issues"
   },
-  "homepage": "https://github.com/rafael-romero/memotest-2025#readme"
+  "homepage": "https://github.com/rafael-romero/memotest-2025#readme",
+  "devDependencies": {
+    "cypress": "^14.4.1",
+    "http-server": "^14.1.1"
+  }
 }
