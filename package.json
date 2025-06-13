@@ -4,7 +4,8 @@
   "description": "Juego Memotest para r/Argentina Programa",
   "main": "index.html",
   "scripts": {
-    "start-server": "http-server"
+    "start-server": "http-server",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
