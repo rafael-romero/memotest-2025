@@ -18,7 +18,7 @@
       <div class="col-md-6 text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center"> <img id="titulo"
           src="src/img/Duelo-de-Memoria-Pokemon-23-5-2025.png" alt="Duelo de Memoria Pokemon"
           class="img-fluid" />
-        <button id="iniciar-btn" class="btn btn-primary btn-lg mt-3 texto-pokemon-azul">Iniciar Juego</button>
+        <button id="iniciar-btn" data-cy="iniciar-btn" class="btn btn-primary btn-lg mt-3 texto-pokemon-azul">Iniciar Juego</button>
       </div>
       <div class="col-md-6 text-md-end">
         <div id="pizarra-anotacion" class="d-flex flex-column align-items-start justify-content-center">
@@ -31,7 +31,7 @@
   </header>
 
   <main class="flex-grow-1 d-flex justify-content-center align-items-center">
-    <div id="tablero" class="container-fluid d-flex flex-wrap justify-content-center desactivado">
+    <div id="tablero" data-cy="tablero" class="container-fluid d-flex flex-wrap justify-content-center desactivado">
       <div class="col-3 carta">
         <div class="tarjeta-frontal"></div>
         <div class="tarjeta-trasera"></div>
