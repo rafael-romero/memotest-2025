@@ -28,4 +28,8 @@ Cypress.Commands.add('getByData', (selector) => {
   return cy.get(`[data-cy=${selector}]`);
 })
 
+Cypress.Commands.add('getCard', (pokemon) => {
+  return cy.get(`[data-carta=${pokemon}]`);
+})
+
 
